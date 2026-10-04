@@ -11,7 +11,7 @@ alternates:
 
 # 隐私政策 — FairyBill
 
-**更新日期：** 2026年10月2日  
+**更新日期：** 2026年10月4日  
 **联系：** [spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
 
 FairyBill（「本应用」）帮助家庭整理从邮件中识别的账单。本政策说明应用在你设备上的行为。
@@ -36,7 +36,6 @@ FairyBill（「本应用」）帮助家庭整理从邮件中识别的账单。�
 
 ## 你的选择
 
-- 可使用示例邮箱而不连接 Gmail。
 - 可在设置中断开并删除数据。
 - 可在 [Google 账号权限](https://myaccount.google.com/permissions) 中撤销 FairyBill。
 

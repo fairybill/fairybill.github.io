@@ -11,7 +11,7 @@ alternates:
 
 # Privacy Policy — FairyBill
 
-**Last updated:** October 2, 2026  
+**Last updated:** October 4, 2026  
 **Contact:** [spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
 
 FairyBill (“we”, “the app”) helps households organize bills recognized from email. This policy describes what the app does on your device and what we do not do.
@@ -52,7 +52,6 @@ We do not share Gmail or bill data with third parties except:
 
 ## Your choices
 
-- You can use the sample mailbox without connecting Gmail.
 - You can disconnect mailboxes and delete local data in Settings.
 - You can revoke FairyBill’s access in your [Google Account security settings](https://myaccount.google.com/permissions).
 

@@ -10,8 +10,6 @@ FairyBill is an iPhone app for Canadian households. It finds bills in your Gmail
 
 - Gmail is read with **read-only** access, only to find bill emails (and Interac e-Transfer notices if you turn them on).
 - Bills and sign-in tokens stay **on your phone**. FairyBill has no server that stores your email.
-- You can try the app with a sample mailbox before connecting Gmail.
-
 ## Privacy
 
 | | Privacy policy | Google data use (Limited Use) |
