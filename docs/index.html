@@ -1,0 +1,513 @@
+---
+layout: null
+permalink: /
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FairyBill — household bills from your Gmail, sorted on your iPhone</title>
+<meta name="description" content="FairyBill is an iPhone app for Canadian households. It finds bills in your family's Gmail with read-only access and shows monthly totals, upcoming charges and trends. Your data stays on your phone.">
+<meta name="theme-color" content="#7F8CF7">
+<meta property="og:title" content="FairyBill — household bills, sorted by magic">
+<meta property="og:description" content="Bills from your family's Gmail, sorted on your iPhone. Read-only access, no server, no ads.">
+<meta property="og:image" content="https://fairybill.github.io/assets/logo-192.png">
+<meta property="og:url" content="https://fairybill.github.io/">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<style>
+  :root {
+    --ink: #141a2a; --muted: #5d6679; --line: #e8e6f3; --soft: #f7f6fd;
+    --violet: #8b74f6; --sky: #4aa6f8; --gold: #f5b100;
+    --grad: linear-gradient(135deg, #9a7bf7 0%, #4aa6f8 100%);
+    --radius: 22px; --max: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; color: var(--ink); background: #fff;
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.82);
+    backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid rgba(232,230,243,.7); }
+  .nav { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; text-decoration: none; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  .links { display: flex; gap: 24px; margin-left: auto; font-size: 15px; }
+  .links a { text-decoration: none; color: var(--muted); }
+  .links a:hover { color: var(--ink); }
+  .lang { display: flex; gap: 2px; padding: 3px; background: var(--soft); border-radius: 999px; }
+  .lang button { border: 0; background: none; font: inherit; font-size: 13px; color: var(--muted);
+    padding: 4px 10px; border-radius: 999px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(20,26,42,.12); }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 72px 0 40px; }
+  .hero::before { content: ""; position: absolute; inset: -40% -20% auto auto; width: 900px; height: 900px;
+    background: radial-gradient(closest-side, rgba(154,123,247,.20), rgba(74,166,248,.10) 55%, transparent); z-index: -1; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #6a58e8;
+    background: #f1eeff; padding: 6px 12px; border-radius: 999px; }
+  h1 { font-size: clamp(38px, 5.6vw, 64px); line-height: 1.08; letter-spacing: -.02em; margin: 18px 0 20px; }
+  h1, h2, h3 { text-wrap: balance; }
+  h1 .grad { display: inline-block; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); max-width: 560px; margin: 0 0 30px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 22px; border-radius: 14px;
+    font-weight: 600; font-size: 16px; text-decoration: none; }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-dark small { display: block; font-size: 11px; font-weight: 500; opacity: .7; line-height: 1; }
+  .btn-dark span { line-height: 1.15; }
+  .btn-ghost { border: 1px solid var(--line); color: var(--ink); background: #fff; }
+  .btn-ghost:hover { border-color: #cfcbe6; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 0; margin: 0; list-style: none; font-size: 15px; color: var(--muted); }
+  .chips li { display: flex; align-items: center; gap: 8px; }
+  .chips li::before { content: ""; width: 18px; height: 18px; border-radius: 50%; flex: none;
+    background: #e9f7ef url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.4l2.6 2.6L13 6.6' fill='none' stroke='%2322a35a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat; }
+  .hero-shots { position: relative; display: flex; justify-content: center; min-height: 560px; }
+  .hero-shots img { width: 300px; filter: drop-shadow(0 30px 50px rgba(60,50,160,.18)); }
+  .hero-shots .back { position: absolute; width: 260px; right: 2%; top: 60px; opacity: .96; transform: rotate(6deg); }
+  .hero-shots .front { position: relative; z-index: 1; margin-right: 120px; transform: rotate(-3deg); }
+
+  /* Sections */
+  section { padding: 96px 0; }
+  .alt { background: var(--soft); }
+  .kicker { font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6a58e8; margin: 0 0 10px; }
+  h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.15; letter-spacing: -.015em; margin: 0 0 16px; }
+  .sub { font-size: 18px; color: var(--muted); max-width: 680px; margin: 0; }
+  .center { text-align: center; } .center .sub { margin: 0 auto; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; counter-reset: s; }
+  .step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 40px; height: 40px;
+    border-radius: 12px; background: var(--grad); color: #fff; font-weight: 700; margin-bottom: 18px; }
+  .step h3 { margin: 0 0 8px; font-size: 20px; }
+  .step p { margin: 0; color: var(--muted); font-size: 16px; }
+
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 56px 0; }
+  .feature + .feature { border-top: 1px solid var(--line); }
+  .feature .shot { display: flex; justify-content: center; }
+  .feature .shot img { width: 300px; filter: drop-shadow(0 24px 40px rgba(60,50,160,.14)); }
+  .feature:nth-child(even) .shot { order: -1; }
+  .feature h3 { font-size: clamp(26px, 2.8vw, 34px); line-height: 1.2; margin: 0 0 14px; letter-spacing: -.01em; }
+  .feature p { color: var(--muted); margin: 0 0 18px; }
+  .feature ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .feature li { position: relative; padding-left: 28px; }
+  .feature li::before { content: ""; position: absolute; left: 0; top: .5em; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--grad); box-shadow: inset 0 0 0 4px #fff, 0 0 0 1px #d9d2ff; }
+
+  .providers { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 36px; padding: 0; list-style: none; }
+  .providers li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 15px; font-weight: 500; }
+  .note { font-size: 14px; color: var(--muted); margin-top: 20px; }
+
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .card .ico { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; margin-bottom: 16px; }
+  .card h3 { margin: 0 0 8px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  .limits { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+  .col { border-radius: var(--radius); padding: 32px; border: 1px solid var(--line); background: #fff; }
+  .col h3 { margin: 0 0 18px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+  .col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .col li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; color: #333b4d; font-size: 16px; }
+  .col li::before { font-weight: 700; text-align: center; }
+  .yes li::before { content: "✓"; color: #22a35a; }
+  .no li::before { content: "—"; color: #9aa1b2; }
+
+  .support { text-align: center; }
+  .support .btn { margin-top: 28px; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0 56px; font-size: 14px; color: var(--muted); }
+  .foot { display: flex; flex-wrap: wrap; gap: 24px 48px; justify-content: space-between; }
+  .foot h4 { margin: 0 0 10px; color: var(--ink); font-size: 14px; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .foot a { text-decoration: none; } .foot a:hover { color: var(--ink); }
+
+  /* Tablet */
+  @media (max-width: 960px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .feature { gap: 40px; }
+  }
+  /* Phone */
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 20px; }
+    .links { display: none; }
+    .lang { margin-left: auto; }
+    .hero { padding: 40px 0 8px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 28px; text-align: left; }
+    .hero-shots { min-height: 0; }
+    .hero-shots .back { display: none; }
+    .hero-shots .front { margin: 0; transform: none; width: min(270px, 72vw); }
+    .btn { flex: 1 1 auto; justify-content: center; }
+    section { padding: 64px 0; }
+    .steps, .cards, .limits { grid-template-columns: 1fr; margin-top: 32px; gap: 14px; }
+    .feature { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; }
+    .feature .shot { order: 2 !important; }
+    .feature .shot img { width: min(260px, 70vw); }
+    .col { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/assets/logo-192.png" alt="">FairyBill</a>
+    <nav class="links">
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+      <a href="#limits" data-i18n="nav.limits">What it doesn't do</a>
+      <a href="#support" data-i18n="nav.support">Support</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow" data-i18n="hero.eyebrow">iPhone app for Canadian households</span>
+        <h1 data-i18n="hero.title">Your household bills, <span class="grad">sorted by magic.</span></h1>
+        <p class="lead" data-i18n="hero.lead">FairyBill finds the bills in your family's Gmail — hydro, gas, internet, phone, insurance, subscriptions — and shows what you spend each month, what's coming up, and who paid for what. Everything stays on your iPhone.</p>
+        <div class="cta">
+          <span class="btn btn-dark" aria-disabled="true">
+            <svg width="20" height="24" viewBox="0 0 17 20" fill="#fff" aria-hidden="true"><path d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9C3.6 4.8 2 5.8 1.1 7.4c-1.9 3.2-.5 8 1.3 10.6.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.9 3.4-.9s2 .9 3.4.8c1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.9-1.1-3-4.3zM11.5 3c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+            <span><small data-i18n="hero.soon">Coming soon</small><span data-i18n="hero.store">App Store</span></span>
+          </span>
+          <a class="btn btn-ghost" href="/en/privacy/" data-href="privacy" data-i18n="hero.privacy">Privacy policy</a>
+        </div>
+        <ul class="chips">
+          <li data-i18n="chip.readonly">Gmail read-only</li>
+          <li data-i18n="chip.local">Data stays on your phone</li>
+          <li data-i18n="chip.noads">No server, no ads</li>
+        </ul>
+      </div>
+      <div class="hero-shots">
+        <img class="back" src="/assets/screens/03-bills.png" width="596" height="1148" alt="Bills grouped by month in FairyBill">
+        <img class="front" src="/assets/screens/04-summary.png" width="596" height="1148" alt="FairyBill summary: household spending by category and a 12-month trend">
+      </div>
+    </div>
+  </div>
+
+  <section class="alt">
+    <div class="wrap center">
+      <p class="kicker" data-i18n="how.kicker">How it works</p>
+      <h2 data-i18n="how.title">Three steps. No typing.</h2>
+      <p class="sub" data-i18n="how.sub">No receipts to photograph, no spreadsheets. FairyBill reads the bills your providers already email you.</p>
+      <div class="steps" style="text-align:left">
+        <div class="step"><h3 data-i18n="s1.t">Connect Gmail</h3><p data-i18n="s1.b">Sign in with Google. FairyBill asks for read-only access and never sees your password.</p></div>
+        <div class="step"><h3 data-i18n="s2.t">Bills are found for you</h3><p data-i18n="s2.b">It searches only for bill emails, reads the amount and date, and files each one as a fixed bill, living cost or other.</p></div>
+        <div class="step"><h3 data-i18n="s3.t">See the whole picture</h3><p data-i18n="s3.b">Monthly totals, upcoming charges and a 12-month trend for the whole family, in one place.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="center">
+        <p class="kicker" data-i18n="f.kicker">Features</p>
+        <h2 data-i18n="f.title">Everything about your bills, on one phone</h2>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <div>
+            <h3 data-i18n="f1.t">Up and running in a minute</h3>
+            <p data-i18n="f1.b">Tap Connect Gmail and FairyBill reads your last 3 months right away, showing which month it's on.</p>
+            <ul>
+              <li data-i18n="f1.l1">Import up to 12 months of history from Settings</li>
+              <li data-i18n="f1.l2">If the connection drops, it picks up where it left off</li>
+              <li data-i18n="f1.l3">Syncs new bills when you open the app, at most every 12 hours</li>
+            </ul>
+          </div>
+          <div class="shot"><img loading="lazy" src="/assets/screens/01-importing.png" width="596" height="1148" alt="Connecting Gmail and importing the first months"></div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3 data-i18n="f2.t">This month, at a glance</h3>
+            <p data-i18n="f2.b">The home page answers the question every family asks: how much are we spending on bills?</p>
+            <ul>
+              <li data-i18n="f2.l1">This month's household total, compared with last month</li>
+              <li data-i18n="f2.l2">The split between fixed bills, living costs and other</li>
+              <li data-i18n="f2.l3">Charges coming up, including autopay, before they hit</li>
+            </ul>
+          </div>
+          <div class="shot"><img loading="lazy" src="/assets/screens/02-home.png" width="596" height="1148" alt="Home page with monthly total and upcoming charges"></div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3 data-i18n="f3.t">Every bill, filed by month</h3>
+            <p data-i18n="f3.b">Each bill shows the provider and what it's for — Enbridge (gas), Alectra (hydro), Rogers (internet) — with its date and amount.</p>
+            <ul>
+              <li data-i18n="f3.l1">Filter by fixed bills, subscriptions or living costs</li>
+              <li data-i18n="f3.l2">Search by provider or bill type</li>
+              <li data-i18n="f3.l3">Mark bills as paid and open the original email to check</li>
+            </ul>
+          </div>
+          <div class="shot"><img loading="lazy" src="/assets/screens/03-bills.png" width="596" height="1148" alt="Bill list grouped by month with filters"></div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3 data-i18n="f4.t">See where the money goes</h3>
+            <p data-i18n="f4.b">Switch between one month, this year and the last 12 months.</p>
+            <ul>
+              <li data-i18n="f4.l1">Change from last month and the split by category</li>
+              <li data-i18n="f4.l2">A 12-month trend to spot the expensive seasons</li>
+              <li data-i18n="f4.l3">With several mailboxes, how much each family member spent</li>
+            </ul>
+          </div>
+          <div class="shot"><img loading="lazy" src="/assets/screens/04-summary.png" width="596" height="1148" alt="Spending summary with category split and 12-month trend"></div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3 data-i18n="f5.t">Made for the whole family</h3>
+            <p data-i18n="f5.b">Bills arrive in different inboxes. FairyBill brings them together.</p>
+            <ul>
+              <li data-i18n="f5.l1">Add up to 5 Gmail accounts, each with its own Google sign-in</li>
+              <li data-i18n="f5.l2">Name each one — Me, Partner, Mom — and see their share</li>
+              <li data-i18n="f5.l3">Optionally include Interac e-Transfer notices</li>
+              <li data-i18n="f5.l4">In English, French or Chinese, switchable in the app</li>
+            </ul>
+          </div>
+          <div class="shot"><img loading="lazy" src="/assets/screens/05-settings.png" width="596" height="1148" alt="Settings with family mailboxes, sync and language"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap center">
+      <p class="kicker" data-i18n="p.kicker">Recognized bills</p>
+      <h2 data-i18n="p.title">Knows the bills Canadian families get</h2>
+      <p class="sub" data-i18n="p.sub">Hydro, gas, water, internet, mobile, insurance, home services, subscriptions and online orders — across Canada.</p>
+      <ul class="providers">
+        <li>Toronto Hydro</li><li>Hydro One</li><li>Alectra</li><li>BC Hydro</li><li>Hydro-Québec</li><li>Enbridge</li><li>FortisBC</li>
+        <li>Rogers</li><li>Bell</li><li>Telus</li><li>Fido</li><li>Koodo</li><li>Freedom</li><li>Vidéotron</li>
+        <li>Enercare</li><li>Reliance</li><li>Intact</li><li>TD Insurance</li><li>Netflix</li><li>Spotify</li><li>Costco</li><li>Amazon</li>
+      </ul>
+      <p class="note" data-i18n="p.note">Provider names are shown only to describe which emails FairyBill can read; FairyBill isn't affiliated with them.</p>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap center">
+      <p class="kicker" data-i18n="pr.kicker">Privacy</p>
+      <h2 data-i18n="pr.title">Your bills never leave your phone</h2>
+      <p class="sub" data-i18n="pr.sub">FairyBill has no account to create and no server that stores your email. It's just you, your iPhone and Google.</p>
+      <div class="cards" style="text-align:left">
+        <div class="card">
+          <div class="ico" style="background:#eef0ff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b5ff0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3 data-i18n="c1.t">Read-only Gmail</h3><p data-i18n="c1.b">FairyBill can read, never send, delete or change email — and it only looks for bills.</p>
+        </div>
+        <div class="card">
+          <div class="ico" style="background:#e9f7ef"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22a35a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+          <h3 data-i18n="c2.t">Encrypted on your iPhone</h3><p data-i18n="c2.b">Bills are stored encrypted on the phone and kept out of iCloud and computer backups. Google sign-ins live in the iOS Keychain.</p>
+        </div>
+        <div class="card">
+          <div class="ico" style="background:#fff5dc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d99a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
+          <h3 data-i18n="c3.t">No server, no ads</h3><p data-i18n="c3.b">We don't sell data, and Gmail data is never used for ads or to train general AI models.</p>
+        </div>
+        <div class="card">
+          <div class="ico" style="background:#ffeef0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e5484d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></div>
+          <h3 data-i18n="c4.t">Leave any time</h3><p data-i18n="c4.b">Disconnecting a mailbox revokes access and deletes its data. You can also remove FairyBill from your Google account.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits" class="alt">
+    <div class="wrap center">
+      <p class="kicker" data-i18n="l.kicker">Good to know</p>
+      <h2 data-i18n="l.title">What FairyBill does — and doesn't</h2>
+      <p class="sub" data-i18n="l.sub">A simple tool that does one thing well. Here's exactly where it stops.</p>
+      <div class="limits" style="text-align:left">
+        <div class="col yes">
+          <h3 data-i18n="l.yes">It does</h3>
+          <ul>
+            <li data-i18n="y1">Find bills and receipts in up to 5 Gmail accounts</li>
+            <li data-i18n="y2">Read the amount, date and type of each bill</li>
+            <li data-i18n="y3">Show monthly totals, upcoming charges and trends</li>
+            <li data-i18n="y4">Keep up to 12 months of history on your phone</li>
+            <li data-i18n="y5">Open the original email whenever you want to check</li>
+          </ul>
+        </div>
+        <div class="col no">
+          <h3 data-i18n="l.no">It doesn't</h3>
+          <ul>
+            <li data-i18n="n1">Connect to your bank, pay bills or move money</li>
+            <li data-i18n="n2">Send, delete or change any email</li>
+            <li data-i18n="n3">Work with Outlook, Yahoo or other mail services — Gmail only, for now</li>
+            <li data-i18n="n4">See paper bills or bills you only view on a provider's website</li>
+            <li data-i18n="n5">Track card or cash spending that doesn't arrive by email</li>
+            <li data-i18n="n6">Sync between devices — data lives on one iPhone; a new phone means connecting again</li>
+            <li data-i18n="n7">Guarantee every amount: it reads emails automatically, so check the original if something looks off</li>
+            <li data-i18n="n8">Run on Android or the web — iPhone only, for now</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" class="support">
+    <div class="wrap">
+      <h2 data-i18n="su.title">Questions? We're here.</h2>
+      <p class="sub" style="margin:0 auto" data-i18n="su.sub">Something not recognized, or an idea for FairyBill? Email us — a real person reads every message.</p>
+      <a class="btn btn-dark" href="mailto:spliteasyone@gmail.com">spliteasyone@gmail.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="brand" href="/"><img src="/assets/logo-192.png" alt="">FairyBill</a>
+      <p style="margin:12px 0 0" data-i18n="ft.tag">Household bills, sorted by magic.</p>
+      <p style="margin:4px 0 0">© 2026 FairyBill</p>
+    </div>
+    <div>
+      <h4 data-i18n="ft.legal">Legal</h4>
+      <ul>
+        <li><a href="/en/privacy/">Privacy policy</a> · <a href="/en/google-limited-use/">Google data use</a></li>
+        <li><a href="/fr/privacy/">Politique de confidentialité</a> · <a href="/fr/google-limited-use/">Données Google</a></li>
+        <li><a href="/zh/privacy/">隐私政策</a> · <a href="/zh/google-limited-use/">Google 数据使用说明</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="ft.contact">Contact</h4>
+      <ul><li><a href="mailto:spliteasyone@gmail.com">spliteasyone@gmail.com</a></li></ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var T = {
+    zh: {
+      "nav.features": "功能", "nav.privacy": "隐私", "nav.limits": "边界", "nav.support": "支持",
+      "hero.eyebrow": "为加拿大家庭打造的 iPhone 应用",
+      "hero.title": "家里的账单，<span class=\"grad\">自动整理好。</span>",
+      "hero.lead": "FairyBill 从全家人的 Gmail 里找出账单——电费、燃气、网络、手机、保险、订阅——告诉你每个月花了多少、哪些即将扣款、每个人各花了多少。所有数据只留在你的 iPhone 上。",
+      "hero.soon": "即将上架", "hero.store": "App Store", "hero.privacy": "隐私政策",
+      "chip.readonly": "Gmail 只读授权", "chip.local": "数据只在手机上", "chip.noads": "无服务器、无广告",
+      "how.kicker": "怎么用", "how.title": "三步搞定，不用手动记账",
+      "how.sub": "不用拍收据，也不用填表格。FairyBill 读取的是服务商本来就发到你邮箱里的账单。",
+      "s1.t": "连接 Gmail", "s1.b": "用 Google 登录。只申请只读权限，看不到你的密码。",
+      "s2.t": "自动找出账单", "s2.b": "只搜索账单邮件，读出金额和日期，并分成固定账单、生活消费和其他。",
+      "s3.t": "全家开销一目了然", "s3.b": "全家的月度总额、即将扣款和近 12 个月趋势，一处看清。",
+      "f.kicker": "功能", "f.title": "账单的一切，都在一部手机里",
+      "f1.t": "一分钟开始用", "f1.b": "点一下「Connect Gmail」，立即读取最近 3 个月，并显示正在读哪个月。",
+      "f1.l1": "在设置里最多导入 12 个月的历史账单", "f1.l2": "中途断网，下次从断开的地方接着导入", "f1.l3": "打开 App 时自动同步新账单，最多每 12 小时一次",
+      "f2.t": "本月开销，一眼看清", "f2.b": "首页回答每个家庭都关心的问题：这个月账单花了多少？",
+      "f2.l1": "本月家庭账单总额，和上月对比", "f2.l2": "固定账单、生活消费、其他各占多少", "f2.l3": "即将扣款（包括自动扣款），提前知道",
+      "f3.t": "每张账单，按月归档", "f3.b": "每张账单都标明服务商和用途——Enbridge（燃气）、Alectra（电费）、Rogers（网络）——以及日期和金额。",
+      "f3.l1": "按固定账单、订阅、生活消费筛选", "f3.l2": "按服务商或账单类型搜索", "f3.l3": "标记已支付，随时打开原始邮件核对",
+      "f4.t": "钱花在哪里", "f4.b": "按月、今年、近 12 个月随时切换。",
+      "f4.l1": "和上月比的变化，以及各类占比", "f4.l2": "近 12 个月趋势，看出哪几个月最贵", "f4.l3": "连接多个邮箱时，看每位家人各花了多少",
+      "f5.t": "为全家设计", "f5.b": "账单分散在不同人的邮箱里，FairyBill 把它们合在一起。",
+      "f5.l1": "最多添加 5 个 Gmail，每个邮箱单独 Google 授权", "f5.l2": "自定义称呼——我、老公、妈妈——看每个人的占比", "f5.l3": "可选开启 Interac e-Transfer 通知", "f5.l4": "支持中文、英文和法语，App 内随时切换",
+      "p.kicker": "能识别的账单", "p.title": "认识加拿大家庭常见的账单",
+      "p.sub": "电费、燃气、水费、网络、手机、保险、家居服务、订阅和网购——覆盖全加拿大。",
+      "p.note": "列出服务商名称仅用于说明 FairyBill 能读取哪些邮件，FairyBill 与这些公司没有关联。",
+      "pr.kicker": "隐私", "pr.title": "你的账单，从不离开你的手机",
+      "pr.sub": "不用注册账号，也没有存放你邮件的服务器。只有你、你的 iPhone 和 Google。",
+      "c1.t": "Gmail 只读", "c1.b": "只能读取，不能发送、删除或修改邮件，而且只找账单。",
+      "c2.t": "加密保存在 iPhone", "c2.b": "账单加密保存在手机上，不进入 iCloud 或电脑备份；Google 授权凭证保存在 iOS 钥匙串中。",
+      "c3.t": "无服务器、无广告", "c3.b": "不出售数据，Gmail 数据从不用于广告，也不用于训练通用 AI 模型。",
+      "c4.t": "随时离开", "c4.b": "断开邮箱即撤销授权并删除数据；也可以在 Google 账号中移除 FairyBill。",
+      "l.kicker": "使用须知", "l.title": "FairyBill 做什么，不做什么",
+      "l.sub": "一个只把一件事做好的小工具。它的边界在这里，说清楚。",
+      "l.yes": "它会", "l.no": "它不会",
+      "y1": "从最多 5 个 Gmail 中找出账单和收据", "y2": "读出每张账单的金额、日期和类型", "y3": "显示月度总额、即将扣款和趋势",
+      "y4": "在手机上保留最多 12 个月的记录", "y5": "随时打开原始邮件核对",
+      "n1": "连接银行账户、代缴账单或转账", "n2": "发送、删除或修改任何邮件", "n3": "支持 Outlook、Yahoo 等其他邮箱——目前只支持 Gmail",
+      "n4": "看到纸质账单，或只在服务商网站上查看的账单", "n5": "记录不通过邮件发来的刷卡或现金消费",
+      "n6": "在设备之间同步——数据只在一部 iPhone 上，换手机需要重新连接", "n7": "保证每个金额都准确：金额是从邮件自动读出的，有疑问请以原始邮件为准",
+      "n8": "在 Android 或网页上使用——目前只有 iPhone 版",
+      "su.title": "有问题？找我们", "su.sub": "有账单没识别出来，或者对 FairyBill 有想法？发邮件给我们，每封都由真人阅读。",
+      "ft.tag": "家里的账单，自动整理好。", "ft.legal": "法律信息", "ft.contact": "联系"
+    },
+    fr: {
+      "nav.features": "Fonctionnalités", "nav.privacy": "Confidentialité", "nav.limits": "Limites", "nav.support": "Aide",
+      "hero.eyebrow": "Application iPhone pour les ménages canadiens",
+      "hero.title": "Les factures du foyer, <span class=\"grad\">triées comme par magie.</span>",
+      "hero.lead": "FairyBill trouve les factures dans le Gmail de votre famille — électricité, gaz, internet, cellulaire, assurance, abonnements — et montre vos dépenses du mois, les prélèvements à venir et qui a payé quoi. Tout reste sur votre iPhone.",
+      "hero.soon": "Bientôt sur", "hero.store": "l'App Store", "hero.privacy": "Confidentialité",
+      "chip.readonly": "Gmail en lecture seule", "chip.local": "Données sur votre téléphone", "chip.noads": "Sans serveur, sans pub",
+      "how.kicker": "Comment ça marche", "how.title": "Trois étapes. Rien à saisir.",
+      "how.sub": "Pas de reçus à photographier, pas de tableur. FairyBill lit les factures que vos fournisseurs vous envoient déjà par courriel.",
+      "s1.t": "Connectez Gmail", "s1.b": "Connectez-vous avec Google. FairyBill demande un accès en lecture seule et ne voit jamais votre mot de passe.",
+      "s2.t": "Les factures sont trouvées pour vous", "s2.b": "Il ne cherche que les courriels de factures, lit le montant et la date, et classe chacune en frais fixes, vie courante ou autre.",
+      "s3.t": "Une vue d'ensemble", "s3.b": "Totaux mensuels, prélèvements à venir et tendance sur 12 mois pour toute la famille, au même endroit.",
+      "f.kicker": "Fonctionnalités", "f.title": "Tout sur vos factures, dans un seul téléphone",
+      "f1.t": "Prêt en une minute", "f1.b": "Touchez Connect Gmail : FairyBill lit tout de suite vos 3 derniers mois et indique le mois en cours de lecture.",
+      "f1.l1": "Importez jusqu'à 12 mois d'historique depuis les Réglages", "f1.l2": "Si la connexion coupe, il reprend là où il s'était arrêté", "f1.l3": "Synchronise les nouvelles factures à l'ouverture, au plus toutes les 12 heures",
+      "f2.t": "Le mois en un coup d'œil", "f2.b": "L'accueil répond à la question de toutes les familles : combien dépense-t-on en factures?",
+      "f2.l1": "Le total du foyer pour le mois, comparé au mois dernier", "f2.l2": "La répartition entre frais fixes, vie courante et autre", "f2.l3": "Les prélèvements à venir, y compris automatiques, avant qu'ils passent",
+      "f3.t": "Chaque facture, classée par mois", "f3.b": "Chaque facture indique le fournisseur et son objet — Enbridge (gaz), Alectra (électricité), Rogers (internet) — avec sa date et son montant.",
+      "f3.l1": "Filtrez par frais fixes, abonnements ou vie courante", "f3.l2": "Cherchez par fournisseur ou type de facture", "f3.l3": "Marquez une facture payée et ouvrez le courriel d'origine",
+      "f4.t": "Voyez où va l'argent", "f4.b": "Passez d'un mois à l'année en cours ou aux 12 derniers mois.",
+      "f4.l1": "L'écart avec le mois dernier et la répartition par catégorie", "f4.l2": "Une tendance sur 12 mois pour repérer les saisons coûteuses", "f4.l3": "Avec plusieurs boîtes, ce que chaque membre a dépensé",
+      "f5.t": "Pensé pour toute la famille", "f5.b": "Les factures arrivent dans plusieurs boîtes. FairyBill les réunit.",
+      "f5.l1": "Ajoutez jusqu'à 5 comptes Gmail, chacun avec sa propre connexion Google", "f5.l2": "Nommez-les — Moi, Conjoint, Maman — et voyez la part de chacun", "f5.l3": "Incluez au besoin les avis de virement Interac", "f5.l4": "En français, anglais ou chinois, modifiable dans l'app",
+      "p.kicker": "Factures reconnues", "p.title": "Connaît les factures des familles canadiennes",
+      "p.sub": "Électricité, gaz, eau, internet, cellulaire, assurance, services résidentiels, abonnements et achats en ligne — partout au Canada.",
+      "p.note": "Les noms de fournisseurs servent seulement à décrire les courriels que FairyBill peut lire; FairyBill n'est pas affilié à ces entreprises.",
+      "pr.kicker": "Confidentialité", "pr.title": "Vos factures ne quittent jamais votre téléphone",
+      "pr.sub": "Aucun compte à créer, aucun serveur qui stocke vos courriels. Juste vous, votre iPhone et Google.",
+      "c1.t": "Gmail en lecture seule", "c1.b": "FairyBill peut lire, jamais envoyer, supprimer ni modifier un courriel — et ne cherche que les factures.",
+      "c2.t": "Chiffré sur votre iPhone", "c2.b": "Les factures sont chiffrées sur le téléphone et exclues des sauvegardes iCloud et ordinateur. Les connexions Google restent dans le trousseau iOS.",
+      "c3.t": "Sans serveur, sans pub", "c3.b": "Nous ne vendons aucune donnée, et les données Gmail ne servent jamais à la publicité ni à entraîner des modèles d'IA généraux.",
+      "c4.t": "Partez quand vous voulez", "c4.b": "Déconnecter une boîte révoque l'accès et supprime ses données. Vous pouvez aussi retirer FairyBill de votre compte Google.",
+      "l.kicker": "Bon à savoir", "l.title": "Ce que FairyBill fait — et ne fait pas",
+      "l.sub": "Un outil simple qui fait une chose bien. Voici exactement où il s'arrête.",
+      "l.yes": "Il fait", "l.no": "Il ne fait pas",
+      "y1": "Trouver factures et reçus dans jusqu'à 5 comptes Gmail", "y2": "Lire le montant, la date et le type de chaque facture", "y3": "Afficher totaux mensuels, prélèvements à venir et tendances",
+      "y4": "Garder jusqu'à 12 mois d'historique sur votre téléphone", "y5": "Ouvrir le courriel d'origine pour vérifier",
+      "n1": "Se connecter à votre banque, payer des factures ou déplacer de l'argent", "n2": "Envoyer, supprimer ou modifier un courriel", "n3": "Fonctionner avec Outlook, Yahoo ou d'autres services — Gmail seulement, pour l'instant",
+      "n4": "Voir les factures papier ou celles consultées seulement sur le site du fournisseur", "n5": "Suivre les achats par carte ou en espèces qui n'arrivent pas par courriel",
+      "n6": "Synchroniser entre appareils — les données restent sur un iPhone; un nouveau téléphone demande de se reconnecter", "n7": "Garantir chaque montant : il lit les courriels automatiquement, vérifiez l'original en cas de doute",
+      "n8": "Fonctionner sur Android ou le web — iPhone seulement, pour l'instant",
+      "su.title": "Des questions? On est là.", "su.sub": "Une facture non reconnue ou une idée pour FairyBill? Écrivez-nous — une vraie personne lit chaque message.",
+      "ft.tag": "Les factures du foyer, triées comme par magie.", "ft.legal": "Mentions légales", "ft.contact": "Contact"
+    }
+  };
+  var els = document.querySelectorAll("[data-i18n]");
+  var en = {};
+  els.forEach(function (el) { en[el.dataset.i18n] = el.innerHTML; });
+  var buttons = document.querySelectorAll(".lang button");
+
+  function apply(lang) {
+    var dict = T[lang] || en;
+    els.forEach(function (el) { el.innerHTML = dict[el.dataset.i18n] || en[el.dataset.i18n]; });
+    document.querySelectorAll("[data-href]").forEach(function (a) { a.href = "/" + lang + "/" + a.dataset.href + "/"; });
+    document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang;
+    buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    try { localStorage.setItem("fb-lang", lang); } catch (e) {}
+  }
+
+  var asked = new URLSearchParams(location.search).get("lang");
+  var saved = null;
+  try { saved = localStorage.getItem("fb-lang"); } catch (e) {}
+  var nav = (navigator.language || "en").toLowerCase();
+  var pick = [asked, saved].filter(function (l) { return l === "en" || l === "fr" || l === "zh"; })[0];
+  apply(pick || (nav.indexOf("zh") === 0 ? "zh" : nav.indexOf("fr") === 0 ? "fr" : "en"));
+  buttons.forEach(function (b) { b.addEventListener("click", function () { apply(b.dataset.lang); }); });
+})();
+</script>
+</body>
+</html>
