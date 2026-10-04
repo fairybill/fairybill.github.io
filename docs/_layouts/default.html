@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page.title }}</title>
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32.png' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
 <style>
   :root { --blue: #2563eb; }
   body { font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
@@ -16,9 +18,12 @@
   nav a { margin-right: 12px; }
   hr { border: none; border-top: 1px solid #e3e8ee; margin: 40px 0; }
   footer { font-size: 14px; color: #667; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; color: #1c2430; text-decoration: none; margin-bottom: 20px; }
+  .brand img { width: 40px; height: 40px; border-radius: 9px; }
 </style>
 </head>
 <body>
+  <a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/logo-192.png' | relative_url }}" alt="">FairyBill</a>
   {% if page.alternates %}
   <nav>
     {% for alt in page.alternates %}<a href="{{ alt.url | relative_url }}" lang="{{ alt.lang }}">{{ alt.label }}</a>{% endfor %}
