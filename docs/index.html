@@ -8,7 +8,7 @@ permalink: /
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FairyBill — household bills from your Gmail, sorted on your iPhone</title>
-<meta name="description" content="FairyBill is an iPhone app for Canadian households. It finds bills in your family's Gmail with read-only access and shows monthly totals, upcoming charges and trends. Your data stays on your phone.">
+<meta name="description" content="FairyBill is an iPhone app for Canadian households. It finds bills in your family's Gmail with read-only access and shows monthly totals, upcoming charges, trends and what may count at tax time. Your data stays on your phone.">
 <meta name="theme-color" content="#7F8CF7">
 <meta property="og:title" content="FairyBill — household bills, sorted by magic">
 <meta property="og:description" content="Bills from your family's Gmail, sorted on your iPhone. Read-only access, no server, no ads.">
@@ -161,6 +161,7 @@ permalink: /
     <a class="brand" href="/"><img src="/assets/logo-192.png" alt="">FairyBill</a>
     <nav class="links">
       <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#tax" data-i18n="nav.tax">Tax helper</a>
       <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
       <a href="#limits" data-i18n="nav.limits">What it doesn't do</a>
       <a href="#support" data-i18n="nav.support">Support</a>
@@ -179,7 +180,7 @@ permalink: /
       <div>
         <span class="eyebrow" data-i18n="hero.eyebrow">iPhone app for Canadian households</span>
         <h1 data-i18n="hero.title">Your household bills, <span class="grad">sorted by magic.</span></h1>
-        <p class="lead" data-i18n="hero.lead">FairyBill finds the bills in your family's Gmail — hydro, gas, internet, phone, insurance, subscriptions — and shows what you spend each month, what's coming up, and who paid for what. Everything stays on your iPhone.</p>
+        <p class="lead" data-i18n="hero.lead">FairyBill finds the bills in your family's Gmail — hydro, gas, internet, phone, insurance, subscriptions — and shows what you spend each month, what's coming up, who paid for what, and what may count at tax time. Everything stays on your iPhone.</p>
         <div class="cta">
           <span class="btn btn-dark" aria-disabled="true">
             <svg width="20" height="24" viewBox="0 0 17 20" fill="#fff" aria-hidden="true"><path d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9C3.6 4.8 2 5.8 1.1 7.4c-1.9 3.2-.5 8 1.3 10.6.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.9 3.4-.9s2 .9 3.4.8c1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.9-1.1-3-4.3zM11.5 3c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
@@ -194,8 +195,8 @@ permalink: /
         </ul>
       </div>
       <div class="hero-shots">
-        <img class="back" src="/assets/screens/03-bills.png" width="596" height="1148" alt="Bills grouped by month in FairyBill">
-        <img class="front" src="/assets/screens/04-summary.png" width="596" height="1148" alt="FairyBill summary: household spending by category and a 12-month trend">
+        <img class="back" data-shot="03-bills" src="/assets/screens/en/03-bills.png" width="596" height="1148" alt="Bills grouped by month in FairyBill">
+        <img class="front" data-shot="04-summary" src="/assets/screens/en/04-summary.png" width="596" height="1148" alt="FairyBill summary: household spending by category and a 12-month trend">
       </div>
     </div>
   </div>
@@ -226,12 +227,12 @@ permalink: /
             <h3 data-i18n="f1.t">Up and running in a minute</h3>
             <p data-i18n="f1.b">Tap Connect Gmail and FairyBill reads your last 3 months right away, showing which month it's on.</p>
             <ul>
-              <li data-i18n="f1.l1">Import up to 12 months of history from Settings</li>
+              <li data-i18n="f1.l1">Import up to 3 years of history from Settings</li>
               <li data-i18n="f1.l2">If the connection drops, it picks up where it left off</li>
               <li data-i18n="f1.l3">Syncs new bills when you open the app, at most every 12 hours</li>
             </ul>
           </div>
-          <div class="shot"><img loading="lazy" src="/assets/screens/01-importing.png" width="596" height="1148" alt="Connecting Gmail and importing the first months"></div>
+          <div class="shot"><img loading="lazy" data-shot="01-importing" src="/assets/screens/en/01-importing.png" width="596" height="1148" alt="Connecting Gmail and importing the first months"></div>
         </article>
 
         <article class="feature">
@@ -244,7 +245,7 @@ permalink: /
               <li data-i18n="f2.l3">Charges coming up, including autopay, before they hit</li>
             </ul>
           </div>
-          <div class="shot"><img loading="lazy" src="/assets/screens/02-home.png" width="596" height="1148" alt="Home page with monthly total and upcoming charges"></div>
+          <div class="shot"><img loading="lazy" data-shot="02-home" src="/assets/screens/en/02-home.png" width="596" height="1148" alt="Home page with monthly total and upcoming charges"></div>
         </article>
 
         <article class="feature">
@@ -253,11 +254,11 @@ permalink: /
             <p data-i18n="f3.b">Each bill shows the provider and what it's for — Enbridge (gas), Alectra (hydro), Rogers (internet) — with its date and amount.</p>
             <ul>
               <li data-i18n="f3.l1">Filter by fixed bills, subscriptions or living costs</li>
-              <li data-i18n="f3.l2">Search by provider or bill type</li>
+              <li data-i18n="f3.l2">Search by provider, type, amount, e-Transfer note or words in the email, with matches highlighted</li>
               <li data-i18n="f3.l3">Mark bills as paid and open the original email to check</li>
             </ul>
           </div>
-          <div class="shot"><img loading="lazy" src="/assets/screens/03-bills.png" width="596" height="1148" alt="Bill list grouped by month with filters"></div>
+          <div class="shot"><img loading="lazy" data-shot="03-bills" src="/assets/screens/en/03-bills.png" width="596" height="1148" alt="Bill list grouped by month with filters"></div>
         </article>
 
         <article class="feature">
@@ -268,9 +269,10 @@ permalink: /
               <li data-i18n="f4.l1">Change from last month and the split by category</li>
               <li data-i18n="f4.l2">A 12-month trend to spot the expensive seasons</li>
               <li data-i18n="f4.l3">With several mailboxes, how much each family member spent</li>
+              <li data-i18n="f4.l4">Money received by e-Transfer, kept apart from spending</li>
             </ul>
           </div>
-          <div class="shot"><img loading="lazy" src="/assets/screens/04-summary.png" width="596" height="1148" alt="Spending summary with category split and 12-month trend"></div>
+          <div class="shot"><img loading="lazy" data-shot="04-summary" src="/assets/screens/en/04-summary.png" width="596" height="1148" alt="Spending summary with category split and 12-month trend"></div>
         </article>
 
         <article class="feature">
@@ -280,11 +282,26 @@ permalink: /
             <ul>
               <li data-i18n="f5.l1">Add up to 5 Gmail accounts, each with its own Google sign-in</li>
               <li data-i18n="f5.l2">Name each one — Me, Partner, Mom — and see their share</li>
-              <li data-i18n="f5.l3">Optionally include Interac e-Transfer notices</li>
+              <li data-i18n="f5.l3">Optionally include Interac e-Transfers: money sent counts as spending, money received is shown separately</li>
               <li data-i18n="f5.l4">In English, French or Chinese, switchable in the app</li>
             </ul>
           </div>
-          <div class="shot"><img loading="lazy" src="/assets/screens/05-settings.png" width="596" height="1148" alt="Settings with family mailboxes, sync and language"></div>
+          <div class="shot"><img loading="lazy" data-shot="05-settings" src="/assets/screens/en/05-settings.png" width="596" height="1148" alt="Settings with family mailboxes, sync and language"></div>
+        </article>
+
+        <article class="feature" id="tax">
+          <div>
+            <h3 data-i18n="f6.t">Tax time, already added up</h3>
+            <p data-i18n="f6.b">Work from home, run a business from home or rent out part of it? The tax helper adds up the household bills that may count, at your share.</p>
+            <ul>
+              <li data-i18n="f6.l1">Home office (T777), self-employment (T2125) or rental (T776), for this year or last</li>
+              <li data-i18n="f6.l2">Set your share from the workspace area and hours; each bill shows amount × share</li>
+              <li data-i18n="f6.l3">Totals by CRA form line, with the bills that need your call, like mortgage interest</li>
+              <li data-i18n="f6.l4">Export a PDF for your accountant, in English or French, with Quebec forms noted when they apply</li>
+            </ul>
+            <p class="note" data-i18n="f6.note">FairyBill adds up your bills; it isn't tax advice. Check with your accountant or the CRA.</p>
+          </div>
+          <div class="shot"><img loading="lazy" data-shot="06-tax" src="/assets/screens/en/06-tax.png" width="596" height="1148" alt="Tax helper: home office expenses by bill type at your share"></div>
         </article>
       </div>
     </div>
@@ -294,11 +311,12 @@ permalink: /
     <div class="wrap center">
       <p class="kicker" data-i18n="p.kicker">Recognized bills</p>
       <h2 data-i18n="p.title">Knows the bills Canadian families get</h2>
-      <p class="sub" data-i18n="p.sub">Hydro, gas, water, internet, mobile, insurance, home services, subscriptions and online orders — across Canada.</p>
+      <p class="sub" data-i18n="p.sub">Hydro, gas, water, submetering, internet, mobile, insurance, home services, subscriptions, rides, travel and online orders — across Canada, including bills paid through platforms like KUBRA.</p>
       <ul class="providers">
         <li>Toronto Hydro</li><li>Hydro One</li><li>Alectra</li><li>BC Hydro</li><li>Hydro-Québec</li><li>Enbridge</li><li>FortisBC</li>
         <li>Rogers</li><li>Bell</li><li>Telus</li><li>Fido</li><li>Koodo</li><li>Freedom</li><li>Vidéotron</li>
-        <li>Enercare</li><li>Reliance</li><li>Intact</li><li>TD Insurance</li><li>Netflix</li><li>Spotify</li><li>Costco</li><li>Amazon</li>
+        <li>Carma</li><li>Metergy</li><li>Enercare</li><li>Reliance</li><li>Intact</li><li>TD Insurance</li><li>Netflix</li><li>Spotify</li>
+        <li>Uber</li><li>Air Canada</li><li>WestJet</li><li>Costco</li><li>Amazon</li>
       </ul>
       <p class="note" data-i18n="p.note">Provider names are shown only to describe which emails FairyBill can read; FairyBill isn't affiliated with them.</p>
     </div>
@@ -342,8 +360,9 @@ permalink: /
             <li data-i18n="y1">Find bills and receipts in up to 5 Gmail accounts</li>
             <li data-i18n="y2">Read the amount, date and type of each bill</li>
             <li data-i18n="y3">Show monthly totals, upcoming charges and trends</li>
-            <li data-i18n="y4">Keep up to 12 months of history on your phone</li>
+            <li data-i18n="y4">Keep up to 3 years of history on your phone</li>
             <li data-i18n="y5">Open the original email whenever you want to check</li>
+            <li data-i18n="y6">Add up home costs that may count for your tax return, and export them for your accountant</li>
           </ul>
         </div>
         <div class="col no">
@@ -357,6 +376,7 @@ permalink: /
             <li data-i18n="n6">Sync between devices — data lives on one iPhone; a new phone means connecting again</li>
             <li data-i18n="n7">Guarantee every amount: it reads emails automatically, so check the original if something looks off</li>
             <li data-i18n="n8">Run on Android or the web — iPhone only, for now</li>
+            <li data-i18n="n9">File your taxes or give tax advice — it adds up bills, and CRA limits still apply</li>
           </ul>
         </div>
       </div>
@@ -398,10 +418,10 @@ permalink: /
 (function () {
   var T = {
     zh: {
-      "nav.features": "功能", "nav.privacy": "隐私", "nav.limits": "边界", "nav.support": "支持",
+      "nav.features": "功能", "nav.tax": "报税助手", "nav.privacy": "隐私", "nav.limits": "边界", "nav.support": "支持",
       "hero.eyebrow": "为加拿大家庭打造的 iPhone 应用",
       "hero.title": "家里的账单，<span class=\"grad\">自动整理好。</span>",
-      "hero.lead": "FairyBill 从全家人的 Gmail 里找出账单——电费、燃气、网络、手机、保险、订阅——告诉你每个月花了多少、哪些即将扣款、每个人各花了多少。所有数据只留在你的 iPhone 上。",
+      "hero.lead": "FairyBill 从全家人的 Gmail 里找出账单——电费、燃气、网络、手机、保险、订阅——告诉你每个月花了多少、哪些即将扣款、每个人各花了多少，以及报税时哪些可能可以申报。所有数据只留在你的 iPhone 上。",
       "hero.soon": "即将上架", "hero.store": "App Store", "hero.privacy": "隐私政策",
       "chip.readonly": "Gmail 只读授权", "chip.local": "数据只在手机上", "chip.noads": "无服务器、无广告",
       "how.kicker": "怎么用", "how.title": "三步搞定，不用手动记账",
@@ -411,17 +431,21 @@ permalink: /
       "s3.t": "全家开销一目了然", "s3.b": "全家的月度总额、即将扣款和近 12 个月趋势，一处看清。",
       "f.kicker": "功能", "f.title": "账单的一切，都在一部手机里",
       "f1.t": "一分钟开始用", "f1.b": "点一下「Connect Gmail」，立即读取最近 3 个月，并显示正在读哪个月。",
-      "f1.l1": "在设置里最多导入 12 个月的历史账单", "f1.l2": "中途断网，下次从断开的地方接着导入", "f1.l3": "打开 App 时自动同步新账单，最多每 12 小时一次",
+      "f1.l1": "在设置里最多导入 3 年的历史账单", "f1.l2": "中途断网，下次从断开的地方接着导入", "f1.l3": "打开 App 时自动同步新账单，最多每 12 小时一次",
       "f2.t": "本月开销，一眼看清", "f2.b": "首页回答每个家庭都关心的问题：这个月账单花了多少？",
       "f2.l1": "本月家庭账单总额，和上月对比", "f2.l2": "固定账单、生活消费、其他各占多少", "f2.l3": "即将扣款（包括自动扣款），提前知道",
       "f3.t": "每张账单，按月归档", "f3.b": "每张账单都标明服务商和用途——Enbridge（燃气）、Alectra（电费）、Rogers（网络）——以及日期和金额。",
-      "f3.l1": "按固定账单、订阅、生活消费筛选", "f3.l2": "按服务商或账单类型搜索", "f3.l3": "标记已支付，随时打开原始邮件核对",
+      "f3.l1": "按固定账单、订阅、生活消费筛选", "f3.l2": "按服务商、类型、金额、e-Transfer 备注或邮件内容搜索，并高亮匹配处", "f3.l3": "标记已支付，随时打开原始邮件核对",
       "f4.t": "钱花在哪里", "f4.b": "按月、今年、近 12 个月随时切换。",
-      "f4.l1": "和上月比的变化，以及各类占比", "f4.l2": "近 12 个月趋势，看出哪几个月最贵", "f4.l3": "连接多个邮箱时，看每位家人各花了多少",
+      "f4.l1": "和上月比的变化，以及各类占比", "f4.l2": "近 12 个月趋势，看出哪几个月最贵", "f4.l3": "连接多个邮箱时，看每位家人各花了多少", "f4.l4": "通过 e-Transfer 收到的钱单独列出，不算作支出",
       "f5.t": "为全家设计", "f5.b": "账单分散在不同人的邮箱里，FairyBill 把它们合在一起。",
-      "f5.l1": "最多添加 5 个 Gmail，每个邮箱单独 Google 授权", "f5.l2": "自定义称呼——我、老公、妈妈——看每个人的占比", "f5.l3": "可选开启 Interac e-Transfer 通知", "f5.l4": "支持中文、英文和法语，App 内随时切换",
+      "f5.l1": "最多添加 5 个 Gmail，每个邮箱单独 Google 授权", "f5.l2": "自定义称呼——我、老公、妈妈——看每个人的占比", "f5.l3": "可选同步 Interac e-Transfer：转出的算作支出，收到的单独显示", "f5.l4": "支持中文、英文和法语，App 内随时切换",
+      "f6.t": "报税时，账单已经算好", "f6.b": "在家办公、在家做生意，或者出租部分房屋？报税助手按你的比例，把可能可以申报的家庭账单算好。",
+      "f6.l1": "支持在家办公（T777）、自雇（T2125）和出租房屋（T776），可选今年或去年", "f6.l2": "按办公面积和使用时长设定比例，每张账单显示「金额 × 比例」",
+      "f6.l3": "按 CRA 表格栏目汇总，并列出需要你确认的账单，比如房贷利息", "f6.l4": "导出 PDF 给会计师，英文或法语可选；魁北克住址会注明省税表格",
+      "f6.note": "FairyBill 只帮你汇总账单，不构成税务建议，请以会计师或 CRA 的意见为准。",
       "p.kicker": "能识别的账单", "p.title": "认识加拿大家庭常见的账单",
-      "p.sub": "电费、燃气、水费、网络、手机、保险、家居服务、订阅和网购——覆盖全加拿大。",
+      "p.sub": "电费、燃气、水费、分表计费、网络、手机、保险、家居服务、订阅、打车、出行和网购——覆盖全加拿大，也能识别通过 KUBRA 等平台缴费的账单。",
       "p.note": "列出服务商名称仅用于说明 FairyBill 能读取哪些邮件，FairyBill 与这些公司没有关联。",
       "pr.kicker": "隐私", "pr.title": "你的账单，从不离开你的手机",
       "pr.sub": "不用注册账号，也没有存放你邮件的服务器。只有你、你的 iPhone 和 Google。",
@@ -433,19 +457,19 @@ permalink: /
       "l.sub": "一个只把一件事做好的小工具。它的边界在这里，说清楚。",
       "l.yes": "它会", "l.no": "它不会",
       "y1": "从最多 5 个 Gmail 中找出账单和收据", "y2": "读出每张账单的金额、日期和类型", "y3": "显示月度总额、即将扣款和趋势",
-      "y4": "在手机上保留最多 12 个月的记录", "y5": "随时打开原始邮件核对",
+      "y4": "在手机上保留最多 3 年的记录", "y5": "随时打开原始邮件核对", "y6": "汇总报税时可能可以申报的家庭开支，并导出给会计师",
       "n1": "连接银行账户、代缴账单或转账", "n2": "发送、删除或修改任何邮件", "n3": "支持 Outlook、Yahoo 等其他邮箱——目前只支持 Gmail",
       "n4": "看到纸质账单，或只在服务商网站上查看的账单", "n5": "记录不通过邮件发来的刷卡或现金消费",
       "n6": "在设备之间同步——数据只在一部 iPhone 上，换手机需要重新连接", "n7": "保证每个金额都准确：金额是从邮件自动读出的，有疑问请以原始邮件为准",
-      "n8": "在 Android 或网页上使用——目前只有 iPhone 版",
+      "n8": "在 Android 或网页上使用——目前只有 iPhone 版", "n9": "替你报税或提供税务建议——它只汇总账单，CRA 的限额仍然适用",
       "su.title": "有问题？找我们", "su.sub": "有账单没识别出来，或者对 FairyBill 有想法？发邮件给我们，每封都由真人阅读。",
       "ft.tag": "家里的账单，自动整理好。", "ft.legal": "法律信息", "ft.contact": "联系"
     },
     fr: {
-      "nav.features": "Fonctionnalités", "nav.privacy": "Confidentialité", "nav.limits": "Limites", "nav.support": "Aide",
+      "nav.features": "Fonctionnalités", "nav.tax": "Aide fiscale", "nav.privacy": "Confidentialité", "nav.limits": "Limites", "nav.support": "Aide",
       "hero.eyebrow": "Application iPhone pour les ménages canadiens",
       "hero.title": "Les factures du foyer, <span class=\"grad\">triées comme par magie.</span>",
-      "hero.lead": "FairyBill trouve les factures dans le Gmail de votre famille — électricité, gaz, internet, cellulaire, assurance, abonnements — et montre vos dépenses du mois, les prélèvements à venir et qui a payé quoi. Tout reste sur votre iPhone.",
+      "hero.lead": "FairyBill trouve les factures dans le Gmail de votre famille — électricité, gaz, internet, cellulaire, assurance, abonnements — et montre vos dépenses du mois, les prélèvements à venir, qui a payé quoi et ce qui peut compter pour vos impôts. Tout reste sur votre iPhone.",
       "hero.soon": "Bientôt sur", "hero.store": "l'App Store", "hero.privacy": "Confidentialité",
       "chip.readonly": "Gmail en lecture seule", "chip.local": "Données sur votre téléphone", "chip.noads": "Sans serveur, sans pub",
       "how.kicker": "Comment ça marche", "how.title": "Trois étapes. Rien à saisir.",
@@ -455,17 +479,21 @@ permalink: /
       "s3.t": "Une vue d'ensemble", "s3.b": "Totaux mensuels, prélèvements à venir et tendance sur 12 mois pour toute la famille, au même endroit.",
       "f.kicker": "Fonctionnalités", "f.title": "Tout sur vos factures, dans un seul téléphone",
       "f1.t": "Prêt en une minute", "f1.b": "Touchez Connect Gmail : FairyBill lit tout de suite vos 3 derniers mois et indique le mois en cours de lecture.",
-      "f1.l1": "Importez jusqu'à 12 mois d'historique depuis les Réglages", "f1.l2": "Si la connexion coupe, il reprend là où il s'était arrêté", "f1.l3": "Synchronise les nouvelles factures à l'ouverture, au plus toutes les 12 heures",
+      "f1.l1": "Importez jusqu'à 3 ans d'historique depuis les Réglages", "f1.l2": "Si la connexion coupe, il reprend là où il s'était arrêté", "f1.l3": "Synchronise les nouvelles factures à l'ouverture, au plus toutes les 12 heures",
       "f2.t": "Le mois en un coup d'œil", "f2.b": "L'accueil répond à la question de toutes les familles : combien dépense-t-on en factures?",
       "f2.l1": "Le total du foyer pour le mois, comparé au mois dernier", "f2.l2": "La répartition entre frais fixes, vie courante et autre", "f2.l3": "Les prélèvements à venir, y compris automatiques, avant qu'ils passent",
       "f3.t": "Chaque facture, classée par mois", "f3.b": "Chaque facture indique le fournisseur et son objet — Enbridge (gaz), Alectra (électricité), Rogers (internet) — avec sa date et son montant.",
-      "f3.l1": "Filtrez par frais fixes, abonnements ou vie courante", "f3.l2": "Cherchez par fournisseur ou type de facture", "f3.l3": "Marquez une facture payée et ouvrez le courriel d'origine",
+      "f3.l1": "Filtrez par frais fixes, abonnements ou vie courante", "f3.l2": "Cherchez par fournisseur, type, montant, message de virement ou mots du courriel, avec les résultats surlignés", "f3.l3": "Marquez une facture payée et ouvrez le courriel d'origine",
       "f4.t": "Voyez où va l'argent", "f4.b": "Passez d'un mois à l'année en cours ou aux 12 derniers mois.",
-      "f4.l1": "L'écart avec le mois dernier et la répartition par catégorie", "f4.l2": "Une tendance sur 12 mois pour repérer les saisons coûteuses", "f4.l3": "Avec plusieurs boîtes, ce que chaque membre a dépensé",
+      "f4.l1": "L'écart avec le mois dernier et la répartition par catégorie", "f4.l2": "Une tendance sur 12 mois pour repérer les saisons coûteuses", "f4.l3": "Avec plusieurs boîtes, ce que chaque membre a dépensé", "f4.l4": "L'argent reçu par virement Interac, tenu à part des dépenses",
       "f5.t": "Pensé pour toute la famille", "f5.b": "Les factures arrivent dans plusieurs boîtes. FairyBill les réunit.",
-      "f5.l1": "Ajoutez jusqu'à 5 comptes Gmail, chacun avec sa propre connexion Google", "f5.l2": "Nommez-les — Moi, Conjoint, Maman — et voyez la part de chacun", "f5.l3": "Incluez au besoin les avis de virement Interac", "f5.l4": "En français, anglais ou chinois, modifiable dans l'app",
+      "f5.l1": "Ajoutez jusqu'à 5 comptes Gmail, chacun avec sa propre connexion Google", "f5.l2": "Nommez-les — Moi, Conjoint, Maman — et voyez la part de chacun", "f5.l3": "Incluez au besoin les virements Interac : l'argent envoyé compte comme dépense, l'argent reçu est affiché à part", "f5.l4": "En français, anglais ou chinois, modifiable dans l'app",
+      "f6.t": "Les impôts, déjà additionnés", "f6.b": "Vous travaillez de la maison, y exploitez une entreprise ou louez une partie de votre logement? L'aide fiscale additionne les factures du foyer qui peuvent compter, selon votre proportion.",
+      "f6.l1": "Bureau à domicile (T777), travail autonome (T2125) ou location (T776), pour cette année ou l'an dernier", "f6.l2": "Fixez votre proportion selon la superficie et les heures; chaque facture affiche montant × proportion",
+      "f6.l3": "Totaux par ligne des formulaires de l'ARC, avec les factures à confirmer, comme les intérêts hypothécaires", "f6.l4": "Exportez un PDF pour votre comptable, en français ou en anglais, avec les formulaires du Québec indiqués au besoin",
+      "f6.note": "FairyBill additionne vos factures; ce n'est pas un conseil fiscal. Vérifiez auprès de votre comptable ou de l'ARC.",
       "p.kicker": "Factures reconnues", "p.title": "Connaît les factures des familles canadiennes",
-      "p.sub": "Électricité, gaz, eau, internet, cellulaire, assurance, services résidentiels, abonnements et achats en ligne — partout au Canada.",
+      "p.sub": "Électricité, gaz, eau, sous-compteurs, internet, cellulaire, assurance, services résidentiels, abonnements, transport, voyages et achats en ligne — partout au Canada, y compris les factures payées par des plateformes comme KUBRA.",
       "p.note": "Les noms de fournisseurs servent seulement à décrire les courriels que FairyBill peut lire; FairyBill n'est pas affilié à ces entreprises.",
       "pr.kicker": "Confidentialité", "pr.title": "Vos factures ne quittent jamais votre téléphone",
       "pr.sub": "Aucun compte à créer, aucun serveur qui stocke vos courriels. Juste vous, votre iPhone et Google.",
@@ -477,11 +505,11 @@ permalink: /
       "l.sub": "Un outil simple qui fait une chose bien. Voici exactement où il s'arrête.",
       "l.yes": "Il fait", "l.no": "Il ne fait pas",
       "y1": "Trouver factures et reçus dans jusqu'à 5 comptes Gmail", "y2": "Lire le montant, la date et le type de chaque facture", "y3": "Afficher totaux mensuels, prélèvements à venir et tendances",
-      "y4": "Garder jusqu'à 12 mois d'historique sur votre téléphone", "y5": "Ouvrir le courriel d'origine pour vérifier",
+      "y4": "Garder jusqu'à 3 ans d'historique sur votre téléphone", "y5": "Ouvrir le courriel d'origine pour vérifier", "y6": "Additionner les frais du foyer qui peuvent compter pour vos impôts, et les exporter pour votre comptable",
       "n1": "Se connecter à votre banque, payer des factures ou déplacer de l'argent", "n2": "Envoyer, supprimer ou modifier un courriel", "n3": "Fonctionner avec Outlook, Yahoo ou d'autres services — Gmail seulement, pour l'instant",
       "n4": "Voir les factures papier ou celles consultées seulement sur le site du fournisseur", "n5": "Suivre les achats par carte ou en espèces qui n'arrivent pas par courriel",
       "n6": "Synchroniser entre appareils — les données restent sur un iPhone; un nouveau téléphone demande de se reconnecter", "n7": "Garantir chaque montant : il lit les courriels automatiquement, vérifiez l'original en cas de doute",
-      "n8": "Fonctionner sur Android ou le web — iPhone seulement, pour l'instant",
+      "n8": "Fonctionner sur Android ou le web — iPhone seulement, pour l'instant", "n9": "Produire votre déclaration ou donner des conseils fiscaux — il additionne les factures, et les limites de l'ARC s'appliquent",
       "su.title": "Des questions? On est là.", "su.sub": "Une facture non reconnue ou une idée pour FairyBill? Écrivez-nous — une vraie personne lit chaque message.",
       "ft.tag": "Les factures du foyer, triées comme par magie.", "ft.legal": "Mentions légales", "ft.contact": "Contact"
     }
@@ -495,6 +523,8 @@ permalink: /
     var dict = T[lang] || en;
     els.forEach(function (el) { el.innerHTML = dict[el.dataset.i18n] || en[el.dataset.i18n]; });
     document.querySelectorAll("[data-href]").forEach(function (a) { a.href = "/" + lang + "/" + a.dataset.href + "/"; });
+    var shots = lang === "zh" ? "zh" : "en";
+    document.querySelectorAll("img[data-shot]").forEach(function (img) { img.src = "/assets/screens/" + shots + "/" + img.dataset.shot + ".png"; });
     document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang;
     buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
     try { localStorage.setItem("fb-lang", lang); } catch (e) {}
