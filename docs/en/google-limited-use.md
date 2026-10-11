@@ -41,4 +41,4 @@ You can disconnect in the app or remove FairyBill under [Google Account → Thir
 
 ## Contact
 
-[spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+[support@fairybill.app](mailto:support@fairybill.app)

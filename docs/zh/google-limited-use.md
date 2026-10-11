@@ -30,4 +30,4 @@ Gmail 数据**仅**用于应用内向用户展示的功能（账单列表、总�
 
 ## 联系
 
-[spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+[support@fairybill.app](mailto:support@fairybill.app)

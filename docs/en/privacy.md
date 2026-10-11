@@ -11,8 +11,8 @@ alternates:
 
 # Privacy Policy — FairyBill
 
-**Last updated:** October 4, 2026  
-**Contact:** [spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+**Last updated:** October 10, 2026  
+**Contact:** [support@fairybill.app](mailto:support@fairybill.app)
 
 FairyBill (“we”, “the app”) helps households organize bills recognized from email. This policy describes what the app does on your device and what we do not do.
 
@@ -65,4 +65,4 @@ We may update this policy. The “Last updated” date will change; continued us
 
 ## Contact
 
-Questions: [spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+Questions: [support@fairybill.app](mailto:support@fairybill.app)

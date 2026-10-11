@@ -11,8 +11,8 @@ alternates:
 
 # Politique de confidentialité — FairyBill
 
-**Dernière mise à jour :** 4 octobre 2026  
-**Contact :** [spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+**Dernière mise à jour :** 10 octobre 2026  
+**Contact :** [support@fairybill.app](mailto:support@fairybill.app)
 
 FairyBill (« l’application ») aide les ménages à organiser les factures repérées dans le courriel. Cette politique décrit ce que l’application fait sur votre appareil.
 
@@ -54,4 +54,4 @@ Pas de partage des données Gmail ou factures avec des tiers, sauf Google (API G
 
 ## Contact
 
-[spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+[support@fairybill.app](mailto:support@fairybill.app)

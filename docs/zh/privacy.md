@@ -11,8 +11,8 @@ alternates:
 
 # 隐私政策 — FairyBill
 
-**更新日期：** 2026年10月4日  
-**联系：** [spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+**更新日期：** 2026年10月10日  
+**联系：** [support@fairybill.app](mailto:support@fairybill.app)
 
 FairyBill（「本应用」）帮助家庭整理从邮件中识别的账单。本政策说明应用在你设备上的行为。
 
@@ -41,4 +41,4 @@ FairyBill（「本应用」）帮助家庭整理从邮件中识别的账单。�
 
 ## 联系
 
-[spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+[support@fairybill.app](mailto:support@fairybill.app)

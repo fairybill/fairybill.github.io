@@ -30,4 +30,4 @@ Déconnexion dans l’application ou retrait de FairyBill dans [Accès tiers](ht
 
 ## Contact
 
-[spliteasyone@gmail.com](mailto:spliteasyone@gmail.com)
+[support@fairybill.app](mailto:support@fairybill.app)
