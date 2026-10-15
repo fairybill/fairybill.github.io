@@ -5,3 +5,4 @@ baseurl: ""
 url: https://fairybill.app
 include:
   - _redirects
+  - _headers

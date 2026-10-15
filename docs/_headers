@@ -1,0 +1,6 @@
+# Keep the Cloudflare preview hosts out of Google; fairybill.app is the only indexed copy.
+https://fairybill.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.fairybill.pages.dev/*
+  X-Robots-Tag: noindex

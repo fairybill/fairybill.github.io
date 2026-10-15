@@ -1,0 +1,16 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://fairybill.app/</loc></url>
+{%- for p in site.pages %}{% if p.layout == "default" %}
+  <url>
+    <loc>https://fairybill.app{{ p.url }}</loc>
+    {%- for alt in p.alternates %}
+    <xhtml:link rel="alternate" hreflang="{{ alt.lang }}" href="https://fairybill.app{{ alt.url }}"/>
+    {%- endfor %}
+  </url>
+{%- endif %}{% endfor %}
+</urlset>
