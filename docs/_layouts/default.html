@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: 'en' }}">
+<html lang="{{ site.data.htmllang[page.lang] | default: 'en-CA' }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page.title }}</title>
 {%- comment -%} Hard-coded host: the same files are also served on github.io and pages.dev. {%- endcomment %}
 <link rel="canonical" href="https://fairybill.app{{ page.url }}">
-{% for alt in page.alternates %}<link rel="alternate" hreflang="{{ alt.lang }}" href="https://fairybill.app{{ alt.url }}">
-{% endfor %}
+{% for alt in page.alternates %}<link rel="alternate" hreflang="{{ site.data.hreflang[alt.lang] }}" href="https://fairybill.app{{ alt.url }}">
+{% endfor %}{% if page.alternates %}<link rel="alternate" hreflang="x-default" href="https://fairybill.app{{ page.alternates[0].url }}">
+{% endif %}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32.png' | relative_url }}">
 <link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
 <style>

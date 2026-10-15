@@ -1,0 +1,15 @@
+<script>
+(function () {
+  var langs = ["en", "fr", "zh"];
+  document.querySelectorAll(".lang a").forEach(function (a) {
+    a.addEventListener("click", function () { try { localStorage.setItem("fb-lang", a.dataset.lang); } catch (e) {} });
+  });
+  if (location.pathname !== "/") return;
+  // Old ?lang= links, a remembered choice, or a French or Chinese browser get their own page.
+  var saved = null;
+  try { saved = localStorage.getItem("fb-lang"); } catch (e) {}
+  var nav = (navigator.language || "en").toLowerCase().slice(0, 2);
+  var want = [new URLSearchParams(location.search).get("lang"), saved, nav].filter(function (l) { return langs.indexOf(l) >= 0; })[0];
+  if (want === "fr" || want === "zh") location.replace("/" + want + "/" + location.hash);
+})();
+</script>

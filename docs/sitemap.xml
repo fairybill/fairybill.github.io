@@ -4,13 +4,13 @@ permalink: /sitemap.xml
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url><loc>https://fairybill.app/</loc></url>
-{%- for p in site.pages %}{% if p.layout == "default" %}
+{%- for p in site.pages %}{% if p.alternates %}
   <url>
     <loc>https://fairybill.app{{ p.url }}</loc>
     {%- for alt in p.alternates %}
-    <xhtml:link rel="alternate" hreflang="{{ alt.lang }}" href="https://fairybill.app{{ alt.url }}"/>
+    <xhtml:link rel="alternate" hreflang="{{ site.data.hreflang[alt.lang] }}" href="https://fairybill.app{{ alt.url }}"/>
     {%- endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fairybill.app{{ p.alternates[0].url }}"/>
   </url>
 {%- endif %}{% endfor %}
 </urlset>
